@@ -6,11 +6,10 @@
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
     <style type="text/css">
-    	.footer{
-    		height: 10px;
-    	}
+    .footer {
+        height: 10px;
+    }
     </style>
 </head>
 
@@ -39,7 +38,6 @@
                     <li><a>5 (Strongly Agree)</a></li>
                 </ul>
             </div>
-
             <h3><strong>Question 2</strong></h3>
             <h4>You enjoy reading</h4>
             <div class="dropdown">
@@ -52,7 +50,6 @@
                     <li><a>5 (Strongly Agree)</a></li>
                 </ul>
             </div>
-
             <h3><strong>Question 3</strong></h3>
             <h4>You enjoy movies</h4>
             <div class="dropdown">
@@ -65,7 +62,6 @@
                     <li><a>5 (Strongly Agree)</a></li>
                 </ul>
             </div>
-
             <h3><strong>Question 4</strong></h3>
             <h4>You enjoy outdoor activities</h4>
             <div class="dropdown">
@@ -78,7 +74,6 @@
                     <li><a>5 (Strongly Agree)</a></li>
                 </ul>
             </div>
-
             <h3><strong>Question 5</strong></h3>
             <h4>Dogs are better than cats</h4>
             <div class="dropdown">
@@ -91,7 +86,6 @@
                     <li><a>5 (Strongly Agree)</a></li>
                 </ul>
             </div>
-
             <h3><strong>Question 6</strong></h3>
             <h4>The toilet paper roll should be "over", not "under"</h4>
             <div class="dropdown">
@@ -104,7 +98,6 @@
                     <li><a>5 (Strongly Agree)</a></li>
                 </ul>
             </div>
-
             <h3><strong>Question 7</strong></h3>
             <h4>You prefer hot weather</h4>
             <div class="dropdown">
@@ -117,7 +110,6 @@
                     <li><a>5 (Strongly Agree)</a></li>
                 </ul>
             </div>
-
             <h3><strong>Question 8</strong></h3>
             <h4>Apple makes the best products</h4>
             <div class="dropdown">
@@ -130,7 +122,6 @@
                     <li><a>5 (Strongly Agree)</a></li>
                 </ul>
             </div>
-
             <h3><strong>Question 9</strong></h3>
             <h4>Charcoal grilling is better than propane</h4>
             <div class="dropdown">
@@ -143,7 +134,6 @@
                     <li><a>5 (Strongly Agree)</a></li>
                 </ul>
             </div>
-
             <h3><strong>Question 10</strong></h3>
             <h4>These types of surveys yield meaningful results</h4>
             <div class="dropdown">
@@ -156,17 +146,41 @@
                     <li><a>5 (Strongly Agree)</a></li>
                 </ul>
             </div>
-		</div>
-		<br>
-		<button type="submit" class="btn btn-primary btn-lg btn-block" id="submit">Submit
-		</button>
-		<hr>
-		<a href="/api/friends">API Friends List</a>
-		|
-		<a href="#">GitHub Repo</a>
-		<div class="footer">
-		</div>
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary btn-lg btn-block" id="submit">Submit
+        </button>
+        <hr>
+        <a href="/api/friends">API Friends List</a>
+        <div class="footer">
+        </div>
     </div>
+    <script type="text/javascript">
+    $("#submit").on("click", function(event) {//click event for submit button
+        event.preventDefault();
+        //creates object with user input from survey
+        var userData = {
+            name: $("name").val(),
+            photo: $("#photo").val(),
+            scores: [
+                $("#q1").val(),
+                $("#q2").val(),
+                $("#q3").val(),
+                $("#q4").val(),
+                $("#q5").val(),
+                $("#q6").val(),
+                $("#q7").val(),
+                $("#q8").val(),
+                $("#q9").val(),
+                $("#q10").val()
+            ]
+        };
+
+        $.post("/api/friends", userData, function(data){
+            //send results to freinds.js
+        })
+    })
+    </script>
 </body>
 
 </html>
