@@ -1,9 +1,15 @@
-app.get("/:url", function(req, res) {
-	if(url === "survey"){
-		res.sendFile(path.join(__dirname, "survey.html"));
-	}
-  else{res.sendFile(path.join(__dirname, "home.html"));}
+var path = require("path");
 
 
-});
+module.exports = funtcion(app){
+
+  app.get("/survey", function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/survey.html"));
+  });
+
+  app.get("/*", function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/home.html"));
+  });
+
+}
 
